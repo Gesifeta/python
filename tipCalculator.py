@@ -17,4 +17,4 @@ elif piza_size == "L" or piza_size == "L":
         price += 3
 if extra == "Y" or extra ==  "y":
     price +=1
-print(f"Your final bill is: {price}")
+print(f"Your final bill is: ${price}")
