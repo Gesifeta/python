@@ -20,3 +20,13 @@ What size pizza do you want? S, M or L: L
 Do you want pepperoni on your pizza? Y or N: Y
 Do you want extra cheese? Y or N: N
 Your final bill is: $28.
+
+Requirement for Tip calcutor
+
+if the bill was $150.00, split between 5 people, with 12% tip.
+
+Each person should pay:
+
+(150.00 / 5) \* 1.12 = 33.6
+
+After formatting the result to 2 decimal places = 33.60
