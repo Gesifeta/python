@@ -6,8 +6,8 @@ symbols = ['!', '#', '$', '%', '&', '(', ')', '*', '+']
 
 print("Welcome to the PyPassword Generator!")
 nr_letters = int(input("How many letters would you like in your password?\n"))
-nr_symbols = int(input(f"How many symbols would you like?\n"))
 nr_numbers = int(input(f"How many numbers would you like?\n"))
+nr_symbols = int(input(f"How many symbols would you like?\n"))
 
 # Easy Version
 # Generate the password in sequence. Letters, then symbols, then numbers. If the user wants
@@ -17,17 +17,17 @@ nr_numbers = int(input(f"How many numbers would you like?\n"))
 # fgdx$*924
 
 # get random letters
-
 letter_combination=""
 number_combination=""
 symbol_comibination=""
-for number in range(0,nr_letters):
+
+for number in range(0, nr_letters):
     random_letters =random.randint(0,len(letters)-1)
     letter_combination += letters[random_letters]
-for number in range(0,nr_numbers):
-    random_letters =random.randint(0,len(numbers)-1)
-    number_combination +=numbers[random_letters]
+for number in range(0, nr_numbers):
+    random_numbers =random.randint(0,len(numbers)-1)
+    number_combination +=numbers[random_numbers]
 for number in range(0, nr_symbols):
-    random_letters =random.randint(0,len(symbols)-1)
-    symbol_comibination += symbols[random_letters]
-print(f"Your password is : {letter_combination}+{symbol_comibination}+{number_combination}")
+    random_symbols =random.randint(0,len(symbols)-1)
+    symbol_comibination += symbols[random_symbols]
+print(f"Your password is : {letter_combination}{symbol_comibination}{number_combination}")
