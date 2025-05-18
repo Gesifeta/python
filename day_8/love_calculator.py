@@ -2,8 +2,8 @@
 def calculate_love_score(husband, wife):
     true = 0
     love = 0
-    husband =input("Please enter your full name")
-    wife =input("Please enter your spouse full name")
+    husband =input("Please enter your full name ")
+    wife =input("Please enter your spouse full name ")
     words =  husband + wife
     #  count numbers for true
     for char in words.lower():
