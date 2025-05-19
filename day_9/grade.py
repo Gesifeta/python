@@ -5,7 +5,6 @@ student_scores = {
     'Draco': 75,
     'Neville': 60
 }
-
 student_grades ={}
 for score in student_scores:
     if student_scores[score] <= 70:
