@@ -1,15 +1,13 @@
 def is_prime(num):
-    counter = num
-    if num == 0:
+    is_prime=True
+    value = num-1
+    if num == 0 or num == 2:
         return True
-    if num == 2:
-        return True
-    while counter >1:
-     
-        if num % counter == 0:
-            if num == counter:
-                return True
-            return False 
-        counter -= 1
-    return True
     
+    while value > 1: 
+        
+        if num % value == 0:
+            is_prime =False
+            break
+        value -= 1
+    return is_prime
