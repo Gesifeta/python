@@ -4,6 +4,10 @@ from art import logo
 cards = [11, 2, 3, 4, 5, 6, 7, 8, 9, 10, 10, 10, 10]
 dealer_card = [cards[random.randint(0,len(cards)-1)], cards[random.randint(0,len(cards)-1)]]
 player_card = [cards[random.randint(0,len(cards)-1)], cards[random.randint(0,len(cards)-1)]]
+# check if first card is 11 , if so assign it to 1
+if dealer_card[0] == 11 or player_card[0] == 11:
+    dealer_card[0] = 1
+    player_card[0] = 1
 # Get a deal for the player
 def deal():
     player_card.append(cards[random.randint(0,len(cards)-1)])
@@ -17,7 +21,9 @@ def play(continue_playing):
         deal()
 
 def main():
+
     continue_playing = 'y'
+
     while continue_playing != 'n' and (sum(player_card) < 21 and sum(dealer_card) < 21):
          print(f"Your cards: {player_card}, current score: {sum(player_card)}")
          print(f"Computer's first card: {dealer_card[0]}")
@@ -29,10 +35,15 @@ def main():
         print(f"Your final hand: {player_card}, final score: {sum(player_card)}")
         print(f"Computer's final hand: {dealer_card}, final score: {sum(dealer_card)}")
         print("You went over. You lose!")
+
     if sum(dealer_card) >= 21: 
         print(f"Your final hand: {player_card}, final score: {sum(player_card)}")
         print(f"Computer's final hand: {dealer_card}, final score: {sum(dealer_card)}")        
         print("You Won!")
+    if sum(dealer_card) == sum(player_card):
+        print(f"Your final hand: {player_card}, final score: {sum(player_card)}")
+        print(f"Computer's final hand: {dealer_card}, final score: {sum(dealer_card)}")        
+        print("You Draw!")
 
 main()
 
