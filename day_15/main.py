@@ -15,6 +15,7 @@ def resources_available(order):
     return True     
 #  check the coins denominations and calculate total coins
 def process_coins():
+    print("\n"*70)
     print('1. pennies')
     print('2. nickles')
     print('3. dimes')
@@ -36,6 +37,7 @@ def main():
     continue_serving = True
     total_coins = 0.0
     while continue_serving != False:
+        print("\n"*100)
         print("1. espresso")
         print("2. latte")
         print("3. cappuccino\n")
