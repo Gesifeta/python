@@ -7,11 +7,11 @@ from data import report
 def resources_available(order):
     if order.lower() != 'espresso':
         if MENU[order]['ingredients']['milk'] > resources['milk']:
-            return print("“​Sorry there is not enough milk.")
+            return print("​Sorry there is not enough milk.")
     if MENU[order]['ingredients']['water'] > resources['water']:
-        return print("“​Sorry there is not enough water.")
+        return print("​Sorry there is not enough water.")
     if MENU[order]['ingredients']['coffee'] > resources['coffee']:
-        return print("“​Sorry there is not enough coffee.")
+        return print("​Sorry there is not enough coffee.")
     return True     
 #  check the coins denominations and calculate total coins
 def process_coins():
