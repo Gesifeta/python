@@ -13,9 +13,6 @@ def main():
         print(quizes.question)
         answer = input("Your Answer: ").lower()
         is_correct = CheckAnswer(answer, quizes.answer).is_correct.lower()
-        if is_correct != 'false' and is_correct != 'true':
-            print("Invalid input, quiz ended")
-            break
         if is_correct == answer:
             score += 1
         counter += 1
