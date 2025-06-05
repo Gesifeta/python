@@ -17,10 +17,12 @@ cars = []
 screen.onkeypress(player.move_up,"Up")
 screen.onkeypress(player.move_right,"Right")
 screen.onkeypress(player.move_left,"Left")
+
+game_is_on = True
 for color in COLORS:
     car = CarManager()
     cars.append(car)
-while True:
+while game_is_on:
     for car in cars:
         car.penup()
         car.shape("square")
@@ -29,10 +31,13 @@ while True:
         car.color(COLORS[cars.index(car)])
         screen.update()
         time.sleep(.1)
-    while True:
+    while game_is_on:
         for car in cars:
+            if car.distance(player) < 10:
+                game_is_on = False
             car.play()
         screen.update()
         time.sleep(.1)
         screen.update()
         time.sleep(.1)
+    screen.exitonclick()
