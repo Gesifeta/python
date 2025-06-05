@@ -1,8 +1,8 @@
 import time
+import random
 from turtle import Screen
 from player import Player
-from car_manager import CarManager
-from car_manager import  COLORS
+from car_manager import CarManager, COLORS
 from scoreboard import Scoreboard
 
 screen = Screen()
@@ -12,19 +12,27 @@ screen.tracer(0)
 
 player = Player()
 time.sleep(.1)
+cars = []
 
-screen.onkey(player.move_up,"Up")
-screen.onkey(player.move_right,"Right")
-screen.onkey(player.move_left,"Left")
+screen.onkeypress(player.move_up,"Up")
+screen.onkeypress(player.move_right,"Right")
+screen.onkeypress(player.move_left,"Left")
 for color in COLORS:
-    cards = CarManager()
-    cards.penup()
-    screen.update()
-    time.sleep(.1)
-    cards.start(color)
-    time.sleep(.1)
+    car = CarManager()
+    cars.append(car)
 while True:
-    screen.update()
-    time.sleep(.1)
-    screen.update()
-    time.sleep(.1)
+    for car in cars:
+        car.penup()
+        car.shape("square")
+        car.shapesize(stretch_wid=1, stretch_len=2)
+        car.setposition(250, random.randint(-250,300)+ 10)
+        car.color(COLORS[cars.index(car)])
+        screen.update()
+        time.sleep(.1)
+    while True:
+        for car in cars:
+            car.play()
+        screen.update()
+        time.sleep(.1)
+        screen.update()
+        time.sleep(.1)

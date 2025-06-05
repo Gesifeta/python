@@ -14,6 +14,13 @@ class CarManager(Turtle):
         self.setposition(300,random.randint(-250,300)+STARTING_MOVE_DISTANCE)
         self.color(color)
         self.shape('square')
+        self.speed("slow")
         self.penup()
         self.shapesize(stretch_wid=1, stretch_len=2)
+    def play(self):
+        self.clear()
+        self.setheading(180)
+        self.forward(random.randint(1,20))
+        if self.xcor() < -280:
+            self.goto(250, random.randint(-250, 300))
 
