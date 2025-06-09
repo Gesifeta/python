@@ -3,11 +3,7 @@
 #     print(weather)
 
 import csv
-
 import pandas
-import math
-import pandas as pd
-from numpy.ma.extras import average
 
 with open("weather_data.csv") as csvfile:
     reader = csv.reader(csvfile)
