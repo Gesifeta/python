@@ -13,7 +13,7 @@ mile_label.grid(row=0,column=2)
 kilometer_label_before = tk.Label(text='is equal to')
 kilometer_label_before.config(width=20,fg='black',bg='white',text="is equal to")
 kilometer_label_before.grid(row=1,column=0)
-kilometer_label_after = tk.Label(text='Kilometer')
+kilometer_label_after = tk.Label(text='Kilometers')
 kilometer_label_after.grid(row=1,column=2)
 km_entry = tk.Entry()
 
@@ -21,7 +21,7 @@ def convert_to_kilometers():
     result = tk.Label()
     result.grid(row=1, column=1)
     mile = mile_entry.get()
-    result_in_kilometer = float(mile) / .6214
+    result_in_kilometer = float(mile) * 1.689
     result.config(text=result_in_kilometer)
 
 calculate_button=tk.Button()
