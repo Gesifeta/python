@@ -27,7 +27,7 @@ username_label = Label(text="Email/Username:")
 username_entry = Entry(width=35)
 username_entry.insert(0, "example@gmail.com")
 password_label = Label(text="Password:")
-password_entry = Entry(width=25)
+password_entry = Entry(width=10)
 
 letters = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z', 'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z']
 numbers = ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9']
@@ -76,8 +76,21 @@ def save():
     username_entry.delete(0,END)
     password_entry.delete(0, END)
     website_entry.focus()
+def search():
+    website = website_entry.get()
+    if os.path.exists("data.csv"):
+        df = pd.read_csv("data.csv")
+        if website in df["website"].values:
+            row = df[df["website"] == website]
+            username = row["username"].values[0]
+            password = row["password"].values[0]
+            messagebox.showinfo(title=website, message=f"Username: {username}\nPassword: {password}")
+        else:
+            messagebox.showinfo(title="Oops", message=f"No details for {website} exists.")
 add_button = Button(text="Add", width=36,command=save)
 generate_button = Button(text="Generate",command=generate)
+search_button = Button(text="Search", width=13, command=search)
+search_button.grid(column=2, row=1)
 
 # place items on the grid
 canvas.grid(column=1, row=0)
