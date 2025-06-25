@@ -7,9 +7,8 @@ import random
 import datetime
 
 BACKGROUND_COLOR = "#B1DDC6"
-FLASHES = 20
-wrong_answer = 0
-right_answer = 0
+FLASHES = 5
+
 # set file directory
 file_dir = os.path.dirname(__file__)
 # window for the display
@@ -45,24 +44,45 @@ scores ={
 
 def wrong_score():
     scores[current.day]["wrong"] += 1
-    print(scores)
+    try:
+        new_score= open(f"{file_dir}/data/score.json","r")
+    except FileNotFoundError:
+        with  open(f"{file_dir}/data/score.json","w") as new_score:
+            json.dump(scores,new_score)
+    else:
+        json_data = json.load(new_score)
+        print(json_data)
+        json_data.update(scores)
+        with open(f"{file_dir}/data/score.json","w") as new_score:
+            json.dump(json_data,new_score,indent=4)
 
 def right_score():
     scores[current.day]["right"] += 1
-    print(scores)
-
-
+    try:
+        new_score= open(f"{file_dir}/data/score.json","r")
+    except FileNotFoundError:
+        with  open(f"{file_dir}/data/score.json","w") as new_score:
+            json.dump(scores,new_score)
+    else:
+        json_data = json.load(new_score)
+        json_data.update(scores)
+        with open(f"{file_dir}/data/score.json","w") as new_score:
+            json.dump(json_data,new_score,indent=4)
+  
 def save_score():
     try:
-        with open(f"{file_dir}/data/score.json","r") as new_score:
-            score = json.load(new_score)
-            score.update(scores)
-            json.dump(new_score,score)
+            data_json = open(f"{file_dir}/data/score.json","r")
     except FileNotFoundError:
-        with open(f"{file_dir}/data/score.json","r") as new_score:
-            new_json = json.dump(scores, new_score)
+        with open(f"{file_dir}/data/score.json","w") as new_score:
+            json.dump(scores, new_score,indent=4)
+    else:
+         score = json.load(data_json)
+         score.update(scores)
+         with open(f"{file_dir}/data/score.json","w") as new_score:
+             json.dump(score, new_score,indent=4)
 def start_flash():
     play_card(FLASHES)
+    save_score()
 
 def play_card(FLASH):
     random_word =random.randint(0, 35001)
