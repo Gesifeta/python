@@ -35,7 +35,7 @@ meaning = canvas.create_text(400,263,text="english", font=("Arial",50,"bold"))
 current = datetime.datetime.now()
 
 scores ={
-    current.day:{
+    current.strftime("%A"):{
         "wrong":0,
         "right":0
     }
@@ -43,7 +43,7 @@ scores ={
 
 
 def wrong_score():
-    scores[current.day]["wrong"] += 1
+    scores[current.strftime("%A")]["wrong"] += 1
     try:
         new_score= open(f"{file_dir}/data/score.json","r")
     except FileNotFoundError:
@@ -57,7 +57,7 @@ def wrong_score():
             json.dump(json_data,new_score,indent=4)
 
 def right_score():
-    scores[current.day]["right"] += 1
+    scores[current.strftime("%A")]["right"] += 1
     try:
         new_score= open(f"{file_dir}/data/score.json","r")
     except FileNotFoundError:
