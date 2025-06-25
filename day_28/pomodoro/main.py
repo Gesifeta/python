@@ -28,7 +28,7 @@ def count_down(WORK_MIN):
 window.title("Pomodoro")
 window.config(padx=20, pady=20,width=400,background=YELLOW, height=400)
 title_label = Label(text="Timer",padx=10,pady=10, font=FONT_NAME , fg=GREEN, bg=YELLOW)
-title_label.grid(column=4,row=0)
+title_label.grid(column=4, row=0)
 canvas  = Canvas(width=200, height = 224,bg =YELLOW,highlightthickness = 0)
 import os
 # Use absolute path to ensure the image is found
