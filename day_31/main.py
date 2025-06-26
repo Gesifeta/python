@@ -51,11 +51,11 @@ def wrong_score():
             json.dump(scores,new_score)
     else:
         json_data = json.load(new_score)
-        print(json_data)
         json_data.update(scores)
         with open(f"{file_dir}/data/score.json","w") as new_score:
-            json.dump(json_data,new_score,indent=4)
-
+            json.dump(json_data, new_score,indent=4)
+        new_score.close()
+       
 def right_score():
     scores[current.strftime("%A")]["right"] += 1
     try:

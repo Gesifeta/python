@@ -6,5 +6,9 @@
     "Wednesday": {
         "wrong": 0,
         "right": 0
+    },
+    "Thursday": {
+        "wrong": 5,
+        "right": 0
     }
 }
