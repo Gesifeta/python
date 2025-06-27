@@ -6,7 +6,7 @@ import os
 import datetime as dt
 
 # set up the email connection
-password ="ypcr nvek fjph qaoq"
+password ="ypcr qaoq"
 file_dir = os.path.dirname(__file__)
 
 # 1. Update the birthdays.csv
@@ -41,8 +41,8 @@ def pick_letters():
 def sendMail(email,message):
     with smtplib.SMTP("smtp.gmail.com") as connection:
         connection.starttls()
-        connection.login("adamgemechu@gmail.com",password)
-        connection.sendmail(from_addr="adamgemechu@gmail.com",to_addrs=email,msg=message)
+        connection.login("gemechu@gmail.com",password)
+        connection.sendmail(from_addr="gemechu@gmail.com",to_addrs=email,msg=message)
 
 check_birthday()
 
