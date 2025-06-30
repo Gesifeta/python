@@ -17,11 +17,15 @@ quote = canvas.create_text(150,207,text="dsdfweerwer",width=250, font=("Arial",1
 canvas.grid(column=1,row=0)
 
 def get_quote():
-    response = requests.get(url="https://api.kanye.rest")
-    response.raise_for_status()
-    kanye_quote = response.json()["quote"]
-    canvas.itemconfig(quote, text = kanye_quote)
-    return kanye_quote
+    try:
+        response = requests.get(url="https://api.kanye.rest")
+    except ConnectionError:
+        kanye_quote = "connection error"
+        return kanye_quote
+    else:
+        kanye_quote = response.json()["quote"]
+        canvas.itemconfig(quote, text = kanye_quote)
+        return kanye_quote
     #Write your code here.
 quote_button = Button(image=kanye_icon,command=get_quote)
 quote_button.grid(column=1,row=1)
