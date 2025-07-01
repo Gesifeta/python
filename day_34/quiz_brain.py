@@ -7,15 +7,21 @@ class Quiz:
 
 
     def check_answer(self, answer):
-        if self.current_question["answer"] == answer:
+        if self.current_question["correct_answer"] == answer:
             self.score +=1
             return True
         else:
             return False
         
-        
+
+    def still_has_questions(self):
+        return self.question_number<len(self.question_list)
+
+
     def get_next_question(self):
+         self.get_next_question = self.question_list[self.question_number]
          self.question_number += 1
+         return self.current_question
 
 
 
