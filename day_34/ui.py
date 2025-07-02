@@ -12,7 +12,7 @@ class QuizUI():
     def __init__(self, quiz) -> None:
         self.quiz = quiz
         self.window = Tk()
-        self.canvas = Canvas(width=300,height=325)
+        self.canvas = Canvas(width=300,height=325,highlightthickness=0)
         self.right_image = PhotoImage(file=f"{file_path}/images/true.png")
         self.wrong_image = PhotoImage(file=f"{file_path}/images/false.png")
         self.window.config(padx=20,pady=20,background=THEME_COLOR)
@@ -24,30 +24,48 @@ class QuizUI():
         self.right.grid(column=0,row=3)
         self.wrong.grid(column=1,row=3)
         self.score_placeholder=Label(text=f"Score: {self.quiz.score}",pady=20,background=THEME_COLOR,fg="white")
-        self.score_placeholder.grid(column=2,row=0)
+        self.score_placeholder.grid(column=1,row=0)
         self.window.mainloop()
 
     def is_false(self):
-            self.quiz.wrong_answer("False")
+            answer = self.quiz.right_answer("True")
+            if answer == True:
+                  self.window.after(1000,self.wrong_feed_back)
+            else:
+                  self.window.after(1000, self.right_feed_back)
             self.canvas.itemconfig(self.question,text = self.quiz.current_question["question"])
             self.score_placeholder.config(text=f"Score: {self.quiz.score}/{len(self.quiz.question_list)}")
             if self.quiz.still_has_questions():
                    self.show_question(html.unescape(self.quiz.current_question["question"]))
             else:
                   self.canvas.itemconfig(self.question,text = "You reached the end of questions.")
-           
+          
 
     def is_true(self):
-            self.quiz.right_answer("True")
+            answer = self.quiz.right_answer("True")
+            if answer == True:
+                  self.window.after(1000,self.right_feed_back)
+            else:
+                  self.window.after(1000, self.wrong_feed_back)
             self.canvas.itemconfig(self.question,text = self.quiz.current_question["question"])
             self.score_placeholder.config(text=f"Score: {self.quiz.score}/{len(self.quiz.question_list)}")
             if self.quiz.still_has_questions():
                    self.show_question(html.unescape(self.quiz.current_question["question"]))
             else:
                   self.canvas.itemconfig(self.question,text = "You reached the end of questions.")
-           
-
+            
+    
+    
     def show_question(self, new_question):
-        self.canvas.config(bg="white")
+       
         self.canvas.itemconfig(self.question, text=new_question)
- 
+        self.canvas.config(bg="white")
+    
+
+    def right_feed_back(self):
+           self.canvas.config(background="green")
+
+
+    def wrong_feed_back(self):
+          self.canvas.config(background="red")
+            
