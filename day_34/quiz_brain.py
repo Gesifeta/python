@@ -6,25 +6,30 @@ class Quiz:
         self.current_question = self.question_list[self.question_number]
 
 
-    def right_answer(self):
-        if self.current_question["correct_answer"] == "True":
+    def right_answer(self,answer):
+        if self.current_question["correct_answer"] == answer:
             self.score +=1
-            print(self.score)
-            return True
-    def wrong_answer(self):
-        if self.current_question["correct_answer"] == "False":
-            self.score +=1
-            print(self.score)
-            return True
+        if self.still_has_questions():
+            self.get_next_question()
+            self.question_number += 1
+            
         
+
+    def wrong_answer(self, answer):
+        if self.current_question["correct_answer"] == answer:
+            self.score +=1
+        if self.still_has_questions(): 
+            self.get_next_question()
+            self.question_number += 1
+           
+    
 
     def still_has_questions(self):
         return self.question_number<len(self.question_list)
 
 
     def get_next_question(self):
-         self.get_next_question = self.question_list[self.question_number]
-         self.question_number += 1
+         self.current_question = self.question_list[self.question_number]
          return self.current_question
 
 
