@@ -3,15 +3,19 @@ class Quiz:
         self.score = 0
         self.question_list = questions
         self.question_number = 0
-        self.current_question = self.question_list[self.question_number]["question"]
+        self.current_question = self.question_list[self.question_number]
 
 
-    def check_answer(self, answer):
-        if self.current_question["correct_answer"] == answer:
+    def right_answer(self):
+        if self.current_question["correct_answer"] == "True":
             self.score +=1
+            print(self.score)
             return True
-        else:
-            return False
+    def wrong_answer(self):
+        if self.current_question["correct_answer"] == "False":
+            self.score +=1
+            print(self.score)
+            return True
         
 
     def still_has_questions(self):
