@@ -1,9 +1,16 @@
 import requests
 from api import api_key
 
-response = requests.get(url=f"https://api.openweathermap.org/data/2.5/weather?lat=9.1812561&lon=38.7593782&appid={api_key}")
-response.raise_for_status()
-data = response.json()
+params ={
+    "lat":9.181256,
+    "lon":38.7593782,
+    "appid":api_key,
+    "cnt":5
+}
 
-print(data)
-print(response.status_code)
+response = requests.get(url=f"https://api.openweathermap.org/data/2.5/forecast",params=params)
+response.raise_for_status()
+data = response.json()["list"]
+for rain in data:
+    if rain["weather"][0]["id"] < 700:
+        print("It will rain and bring umberella")
