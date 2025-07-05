@@ -12,5 +12,5 @@ response = requests.get(url=f"https://api.openweathermap.org/data/2.5/forecast",
 response.raise_for_status()
 data = response.json()["list"]
 for rain in data:
-    if rain["weather"][0]["id"] < 700:
+    if rain["weather"][0]["id"] < 600:
         print("It will rain and bring umberella")
