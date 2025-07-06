@@ -1,5 +1,6 @@
 import requests
 import os
+import datetime
 
 from api import stock_api_key, news_api_key
 
@@ -12,13 +13,38 @@ stock_params = {
     "apikey":stock_api_key,
     "outputsize":"compact"
 }
+dt = datetime.datetime
+today = dt.now().strftime("%D").split("/")
+today_day = today[1]
+
+# Get yesterday's day by removing the today, and inserting today minus one
+today.remove(today_day)
+if  0 < int(today_day) - 1 < 10:
+    today.insert(1,"0"+ str(int(today_day)-1))
+else:
+    today.insert(1,str(int(today_day)-1))
+yesterday = "/".join(today)
+
+# Get yesterday's day by removing the today, and inserting today minus two
+today.remove(today[1])
+if  0 < int(today_day) - 2 < 10:
+    today.insert(1,"0" + str(int(today_day)-2))
+else:
+    today.insert(1,str(int(today_day)-2))
+before_yesterday = "/".join(today)
+print("Yesterday",yesterday)
+print("Before Yesterday",before_yesterday)
+
+
+
+
 
 ## STEP 1: Use https://www.alphavantage.co
 # When STOCK price increase/decreases by 5% between yesterday and the day before yesterday then print("Get News").
-response = requests.get(url="https://www.alphavantage.co/",params=stock_params)
-response.raise_for_status()
-data = response.json()
-print(data)
+# response = requests.get(url="https://www.alphavantage.co/query",params=stock_params)
+# response.raise_for_status()
+# data = response.json()["Time Series (Daily)"]
+# print(dt.now().strftime("%D"))
 
 ## STEP 2: Use https://newsapi.org
 # Instead of printing ("Get News"), actually get the first 3 news pieces for the COMPANY_NAME. 
