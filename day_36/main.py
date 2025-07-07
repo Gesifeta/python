@@ -2,6 +2,7 @@ import requests
 import os
 import datetime
 
+
 from api import stock_api_key, news_api_key
 
 STOCK = "TSLA"
@@ -15,18 +16,18 @@ today_day = today[2]
 
 # Get yesterday's day by removing the today, and inserting today minus one
 today.remove(today_day)
-if  0 < int(today_day) - 3 < 10:
-    today.insert(2,"0"+ str(int(today_day)-3))
+if  0 < int(today_day) - 4 < 10:
+    today.insert(2,"0"+ str(int(today_day)-4))
 else:
-    today.insert(2,str(int(today_day)-3))
+    today.insert(2,str(int(today_day)-4))
 yesterday = "-".join(today)
 
 # Get yesterday's day by removing the today, and inserting today minus two
 today.remove(today[2])
-if  0 < int(today_day) - 4 < 10:
-    today.insert(2,"0" + str(int(today_day)-4))
+if  0 < int(today_day) - 5 < 10:
+    today.insert(2,"0" + str(int(today_day)-5))
 else:
-    today.insert(2,str(int(today_day)-4))
+    today.insert(2,str(int(today_day)-5))
 before_yesterday = "-".join(today)
 
 
@@ -52,13 +53,17 @@ stock_price_movement = ((float(stock_data[before_yesterday]["4. close"]) - float
 
 news_response =requests.get(url="https://newsapi.org/v2/top-headlines/",params= news_params)
 news_response.raise_for_status()
-news_data = news_response.json()["articles"][:4]
+news_data = news_response.json()["articles"][:3]
 
 if abs(stock_price_movement) > .05:
     print(f"{STOCK} : moved {stock_price_movement}")
     for headline in news_data:
+       
+        print("-"*100)
         print(f"Headlines [{headline["source"]["name"]}], By {headline["author"]} ")
         print(headline["title"])
+        print("-"*100)
+        print(headline["content"])
   
 else:
     print("No major changes")
